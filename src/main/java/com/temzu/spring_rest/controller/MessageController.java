@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("message")
+@RequestMapping("/message")
 public class MessageController {
     private int counter = 4;
 
@@ -24,7 +24,7 @@ public class MessageController {
         return messages;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Map<String, String> getOne(@PathVariable String id) {
         return getMessage(id);
     }
@@ -43,7 +43,7 @@ public class MessageController {
         return message;
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public Map<String, String> update(@PathVariable String id, @RequestBody Map<String, String> message) {
         Map<String, String> messageFromDb = getMessage(id);
         messageFromDb.putAll(message);
@@ -51,7 +51,7 @@ public class MessageController {
         return messageFromDb;
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {
         Map<String, String> message = getMessage(id);
         messages.remove(message);
